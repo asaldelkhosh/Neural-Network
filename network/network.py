@@ -24,11 +24,11 @@ class NeuralNetwork:
     def __build_network(self) -> dict:
         parameters = {}
 
-        for le in range(1, len(self.layer_sizes)):  # number of layers in the network
+        for le in range(1, len(self.size)):  # number of layers in the network
             parameters['W' + str(le)] = np.random.normal(
-                size=(self.layer_sizes[le], self.layer_sizes[le - 1])
+                size=(self.size[le], self.size[le - 1])
             )
-            parameters['b' + str(le)] = np.zeros((self.layer_sizes[le], 1))
+            parameters['b' + str(le)] = np.zeros((self.size[le], 1))
 
         return parameters
     
