@@ -1,6 +1,18 @@
+import numpy as np
+
+
+
+"""
+NeuralNetwork class
+    creates a new NN with a given size.
+"""
 class NeuralNetwork:
-    def __init__:
-        pass
+    """
+    constructor
+        @argument input_size is the size of our neural network
+    """
+    def __init__(self, size: list):
+        self.size = size
     
     def activation_function(self, x):
         pass
