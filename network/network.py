@@ -10,6 +10,7 @@ class NeuralNetwork:
     """
     constructor
         @argument input_size is the size of our neural network
+        @argument activation_type is the activation function type of our preseptrons
     """
     def __init__(self, size: list, activation_type='sigmoid'):
         # alocating the network size
@@ -34,11 +35,19 @@ class NeuralNetwork:
 
         return parameters
     
+    """
+    activation functions
+        @argument x as input
+        @returns output based on the activation type
+            types: unit_step, sigmoid, relu, default
+    """
     def __activation_function(self, x):
         if self.activation_type == 'unit_step':
             return np.heaviside(x, 1)
         elif self.activation_type == 'sigmoid':
             return 1.0 / (1 + np.exp(-x))
+        elif self.activation_type == 'relu':
+            return x * (x > 0)
         else:
             return x
 
