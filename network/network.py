@@ -11,9 +11,11 @@ class NeuralNetwork:
     constructor
         @argument input_size is the size of our neural network
     """
-    def __init__(self, size: list):
+    def __init__(self, size: list, activation_type='sigmoid'):
         # alocating the network size
         self.size = size
+        # setting the activation type
+        self.activation_type = activation_type
         # creating our network architecture
         self.parameters = self.__build_network()
     
@@ -32,8 +34,13 @@ class NeuralNetwork:
 
         return parameters
     
-    def activation_function(self, x):
-        return 1.0 / (1 + np.exp(-x))
+    def __activation_function(self, x):
+        if self.activation_type == 'unit_step':
+            return np.heaviside(x, 1)
+        elif self.activation_type == 'sigmoid':
+            return 1.0 / (1 + np.exp(-x))
+        else:
+            return x
 
     def feed_forward(self):
         pass 
