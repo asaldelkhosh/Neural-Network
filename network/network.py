@@ -33,7 +33,7 @@ class NeuralNetwork:
         return parameters
     
     def activation_function(self, x):
-        pass
+        return 1.0 / (1 + np.exp(-x))
 
     def feed_forward(self):
         pass 
