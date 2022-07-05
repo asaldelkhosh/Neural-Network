@@ -62,8 +62,22 @@ class NeuralNetwork:
     def __linear_activation_forward(self, a_prev, w, b):
         return self.activation((w @ a_prev) + b)
 
+    """
+    feed_forward:
+        receives input vector as a parameter and calculates the output vector based on weights and biases.
+        @argument x is the input vector which is a numpy array.
+        @returns output vector
+    """
     def feed_forward(self):
-        pass 
+        # calculate the deepness
+        deepness = len(self.parameters) // 2
+
+        # doing feedforward for each layer
+        for le in range(1, deepness):  # using our linear activation forward
+            x = self.__linear_activation_forward(x, self.parameters['W' + str(le)], self.parameters['b' + str(le)])
+
+        # last layer
+        return self.__linear_activation_forward(x, self.parameters['W' + str(deepness)], self.parameters['b' + str(deepness)]) 
 
     def back_propagetion(self):
         pass 
