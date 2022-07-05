@@ -50,6 +50,17 @@ class NeuralNetwork:
             return x * (x > 0)
         else:
             return x
+    
+    """
+    linear_activation_forward:
+        using the activation function to perform a forwarding in
+        feedforward steps.
+        @argument a_prev as previous answers
+        @argument w as the weights
+        @argument b as the baios
+    """
+    def __linear_activation_forward(self, a_prev, w, b):
+        return self.activation((w @ a_prev) + b)
 
     def feed_forward(self):
         pass 
