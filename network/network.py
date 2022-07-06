@@ -60,7 +60,7 @@ class NeuralNetwork:
         @argument b as the baios
     """
     def __linear_activation_forward(self, a_prev, w, b):
-        return self.activation((w @ a_prev) + b)
+        return self.__activation_function((w @ a_prev) + b)
 
     """
     feed_forward:
