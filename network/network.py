@@ -82,5 +82,12 @@ class NeuralNetwork:
     def back_propagetion(self):
         pass 
     
-    def error(self):
-        pass
+    """
+    error:
+        mean square error calculating
+        @argument y_start the output
+        @argument y_true the correct output
+        @returns mean square error
+    """
+    def error(self, y_star, y_true):
+        return ((y_star - y_true) ** 2).sum() / (2 * y_star.size)
