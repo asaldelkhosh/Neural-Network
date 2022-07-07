@@ -83,11 +83,21 @@ class NeuralNetwork:
         pass 
     
     """
+    accuracy:
+        calculating the output accuracy
+        @argument y_pred predicted output
+        @argument y_true the correct output
+        @returns accuracy
+    """
+    def __accuracy(self, y_pred, y_true):
+        return (y_pred.argmax(axis=1) == y_true.argmax(axis=1)).mean()
+
+    """
     error:
         mean square error calculating
         @argument y_start the output
         @argument y_true the correct output
         @returns mean square error
     """
-    def error(self, y_star, y_true):
+    def __error(self, y_star, y_true):
         return ((y_star - y_true) ** 2).sum() / (2 * y_star.size)
