@@ -69,18 +69,24 @@ class NeuralNetwork:
         @returns output vector
     """
     def feed_forward(self):
+        # layers results
+        feed_forward_results = []
         # calculate the deepness
         deepness = len(self.parameters) // 2
 
         # doing feedforward for each layer
         for le in range(1, deepness):  # using our linear activation forward
             x = self.__linear_activation_forward(x, self.parameters['W' + str(le)], self.parameters['b' + str(le)])
+            feed_forward_results.append(x)
 
         # last layer
-        return self.__linear_activation_forward(x, self.parameters['W' + str(deepness)], self.parameters['b' + str(deepness)]) 
+        x = self.__linear_activation_forward(x, self.parameters['W' + str(deepness)], self.parameters['b' + str(deepness)])
+        feed_forward_results.append(x)
+        
+        return feed_forward_results
 
-    def back_propagetion(self):
-        pass 
+    def back_propagetion(self, ff_results, y_train):
+         pass
     
     """
     accuracy:
