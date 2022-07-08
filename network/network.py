@@ -4,7 +4,6 @@ import numpy as np
 
 """
 NeuralNetwork class
-    creates a new NN with a given size.
 """
 class NeuralNetwork:
     """
@@ -21,19 +20,18 @@ class NeuralNetwork:
         self.alpha = alpha
     
     """
-    build network
-        @returns parameters of our network architecture
+    build
+        initializing network weights with random numbers.
     """
-    def __build_network(self) -> dict:
-        parameters = {}
-
-        for le in range(1, len(self.size)):  # number of layers in the network
-            parameters['W' + str(le)] = np.random.normal(
-                size=(self.size[le], self.size[le - 1])
-            )
-            parameters['b' + str(le)] = np.zeros((self.size[le], 1))
-
-        return parameters
+    def __build__(self):
+        # start looping from the index of the first layer but
+		# stop before we reach the last two layers
+		for i in np.arange(0, len(layers) - 2):
+			# randomly initialize a weight matrix connecting the
+			# number of nodes in each respective layer together,
+			# adding an extra node for the bias
+			w = np.random.randn(layers[i] + 1, layers[i + 1] + 1)
+			self.W.append(w / np.sqrt(layers[i]))
     
     """
     activation functions
