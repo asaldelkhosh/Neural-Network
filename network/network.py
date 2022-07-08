@@ -78,6 +78,31 @@ class NeuralNetwork:
     """
     def __linear_activation_forward__(self, a_prev, w, b):
         return self.__activation_function((w @ a_prev) + b)
+    
+    """
+    fit
+        responsible for actually training our model
+        @param X training set
+        @param y labels
+        @param epochs the epochs number
+        @param display update
+    """
+    def fit(self, X, y, epochs=1000, displayUpdate=100):
+		# insert a column of 1's as the last entry in the feature
+		# matrix -- this little trick allows us to treat the bias
+		# as a trainable parameter within the weight matrix
+		X = np.c_[X, np.ones((X.shape[0]))]
+		# loop over the desired number of epochs
+		for epoch in np.arange(0, epochs):
+			# loop over each individual data point and train
+			# our network on it
+			for (x, target) in zip(X, y):
+				self.fit_partial(x, target)
+			# check to see if we should display a training update
+			if epoch == 0 or (epoch + 1) % displayUpdate == 0:
+				loss = self.calculate_loss(X, y)
+				print("[INFO] epoch={}, loss={:.7f}".format(
+					epoch + 1, loss))
 
     """
     feed_forward:
