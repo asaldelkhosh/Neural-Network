@@ -9,16 +9,16 @@ NeuralNetwork class
 class NeuralNetwork:
     """
     constructor
-        @argument input_size is the size of our neural network
-        @argument activation_type is the activation function type of our preseptrons
+        @param layers is our network layer information
+        @param alpha is the learning rate for our network
     """
-    def __init__(self, size: list, activation_type='sigmoid'):
-        # alocating the network size
-        self.size = size
-        # setting the activation type
-        self.activation_type = activation_type
-        # creating our network architecture
-        self.parameters = self.__build_network()
+    def __init__(self, layers, alpha=0.1):
+        # alocating the network weights
+        self.W = []
+        # network layers size
+        self.layers = layers
+        # network learning rate
+        self.alpha = alpha
     
     """
     build network
