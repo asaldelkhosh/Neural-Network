@@ -11,11 +11,13 @@ class NeuralNetwork:
         @param layers is our network layer information
         @param alpha is the learning rate for our network
     """
-    def __init__(self, layers, alpha=0.1):
+    def __init__(self, layers, activation_type='sigmoid', alpha=0.1):
         # alocating the network weights
         self.W = []
         # network layers size
         self.layers = layers
+        # network activation function
+        self.activation_type = activation_type
         # network learning rate
         self.alpha = alpha
         # calling our build method
@@ -51,11 +53,11 @@ class NeuralNetwork:
     
     """
     activation functions
-        @argument x as input
+        @param x as input
         @returns output based on the activation type
             types: unit_step, sigmoid, relu, default
     """
-    def __activation_function(self, x):
+    def __activation_function__(self, x):
         if self.activation_type == 'unit_step':
             return np.heaviside(x, 1)
         elif self.activation_type == 'sigmoid':
@@ -69,11 +71,12 @@ class NeuralNetwork:
     linear_activation_forward:
         using the activation function to perform a forwarding in
         feedforward steps.
-        @argument a_prev as previous answers
-        @argument w as the weights
-        @argument b as the baios
+        @param a_prev as previous answers
+        @param w as the weights
+        @param b as the baios
+        @returns activation function result
     """
-    def __linear_activation_forward(self, a_prev, w, b):
+    def __linear_activation_forward__(self, a_prev, w, b):
         return self.__activation_function((w @ a_prev) + b)
 
     """
