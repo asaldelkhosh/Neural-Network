@@ -38,6 +38,16 @@ class NeuralNetwork:
 		# connections need a bias term but the output does not
 		w = np.random.randn(layers[-2] + 1, layers[-1])
 		self.W.append(w / np.sqrt(layers[-2]))
+
+    """
+    repr
+        get a single line information about our network.
+    """
+    def __repr__(self):
+		# construct and return a string that represents the network
+		# architecture
+		return "NeuralNetwork: {}".format(
+			"-".join(str(l) for l in self.layers))
     
     """
     activation functions
