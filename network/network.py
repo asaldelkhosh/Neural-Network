@@ -103,6 +103,19 @@ class NeuralNetwork:
 				loss = self.calculate_loss(X, y)
 				print("[INFO] epoch={}, loss={:.7f}".format(
 					epoch + 1, loss))
+    
+    """
+    fit partial 
+    actual heart of the backpropagation algorithm
+        @param x input 
+        @param y output
+    """
+    def fit_partial(self, x, y):
+		# construct our list of output activations for each layer
+		# as our data point flows through the network; the first
+		# activation is a special case -- it's just the input
+		# feature vector itself
+		A = [np.atleast_2d(x)]
 
     """
     feed_forward:
