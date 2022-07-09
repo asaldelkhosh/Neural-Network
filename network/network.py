@@ -68,18 +68,6 @@ class NeuralNetwork:
             return x
     
     """
-    linear_activation_forward:
-        using the activation function to perform a forwarding in
-        feedforward steps.
-        @param a_prev as previous answers
-        @param w as the weights
-        @param b as the baios
-        @returns activation function result
-    """
-    def __linear_activation_forward__(self, a_prev, w, b):
-        return self.__activation_function((w @ a_prev) + b)
-    
-    """
     fit
         responsible for actually training our model
         @param X training set
@@ -117,6 +105,33 @@ class NeuralNetwork:
 		# feature vector itself
 		A = [np.atleast_2d(x)]
 
+        # FEEDFORWARD:
+		# loop over the layers in the network
+		for layer in np.arange(0, len(self.W)):
+			# feedforward the activation at the current layer by
+			# taking the dot product between the activation and
+			# the weight matrix -- this is called the "net input"
+			# to the current layer
+			net = A[layer].dot(self.W[layer])
+			# computing the "net output" is simply applying our
+			# nonlinear activation function to the net input
+			out = self.__activation_function__(net)
+			# once we have the net output, add it to our list of
+			# activations
+			A.append(out)
+
+        # BACKPROPAGATION
+		# the first phase of backpropagation is to compute the
+		# difference between our *prediction* (the final output
+		# activation in the activations list) and the true target
+		# value
+		error = A[-1] - y
+		# from here, we need to apply the chain rule and build our
+		# list of deltas 'D'; the first entry in the deltas is
+		# simply the error of the output layer times the derivative
+		# of our activation function for the output value
+		D = [error * self.sigmoid_deriv(A[-1])]
+        
     """
     feed_forward:
         receives input vector as a parameter and calculates the output vector based on weights and biases.
