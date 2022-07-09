@@ -216,21 +216,17 @@ class NeuralNetwork:
 		return p
     
     """
-    accuracy:
-        calculating the output accuracy
-        @argument y_pred predicted output
-        @argument y_true the correct output
-        @returns accuracy
+    calculate loss
+        network loss function
+        @param X the dataset
+        @targets dataset labels
+        @returns loss
     """
-    def __accuracy(self, y_pred, y_true):
-        return (y_pred.argmax(axis=1) == y_true.argmax(axis=1)).mean()
-
-    """
-    error:
-        mean square error calculating
-        @argument y_start the output
-        @argument y_true the correct output
-        @returns mean square error
-    """
-    def __error(self, y_star, y_true):
-        return ((y_star - y_true) ** 2).sum() / (2 * y_star.size)
+    def calculate_loss(self, X, targets):
+		# make predictions for the input data points then compute
+		# the loss
+		targets = np.atleast_2d(targets)
+		predictions = self.predict(X, addBias=False)
+		loss = 0.5 * np.sum((predictions - targets) ** 2)
+		# return the loss
+		return loss
