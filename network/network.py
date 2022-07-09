@@ -49,11 +49,23 @@ class NeuralNetwork:
 		return "NeuralNetwork: {}".format(
 			"-".join(str(l) for l in self.layers))
     
+    """
+    sigmoid
+        our network activation function
+        @param x the input 
+        @returns sigmoid output
+    """
     def sigmoid(self, x):
 		# compute and return the sigmoid activation value for a
 		# given input value
 		return 1.0 / (1 + np.exp(-x))
     
+    """
+    sigmoid deriv
+        sigmoid derivation function
+        @param x the input
+        @returns sigmoid derivation output
+    """
     def sigmoid_deriv(self, x):
 		# compute the derivative of the sigmoid function ASSUMING
 		# that x has already been passed through the 'sigmoid'
