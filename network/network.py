@@ -51,21 +51,16 @@ class NeuralNetwork:
 		return "NeuralNetwork: {}".format(
 			"-".join(str(l) for l in self.layers))
     
-    """
-    activation functions
-        @param x as input
-        @returns output based on the activation type
-            types: unit_step, sigmoid, relu, default
-    """
-    def __activation_function__(self, x):
-        if self.activation_type == 'unit_step':
-            return np.heaviside(x, 1)
-        elif self.activation_type == 'sigmoid':
-            return 1.0 / (1 + np.exp(-x))
-        elif self.activation_type == 'relu':
-            return x * (x > 0)
-        else:
-            return x
+    def sigmoid(self, x):
+		# compute and return the sigmoid activation value for a
+		# given input value
+		return 1.0 / (1 + np.exp(-x))
+    
+    def sigmoid_deriv(self, x):
+		# compute the derivative of the sigmoid function ASSUMING
+		# that x has already been passed through the 'sigmoid'
+		# function
+		return x * (1 - x)
     
     """
     fit
