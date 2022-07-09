@@ -11,13 +11,11 @@ class NeuralNetwork:
         @param layers is our network layer information
         @param alpha is the learning rate for our network
     """
-    def __init__(self, layers, activation_type='sigmoid', alpha=0.1):
+    def __init__(self, layers, alpha=0.1):
         # alocating the network weights
         self.W = []
         # network layers size
         self.layers = layers
-        # network activation function
-        self.activation_type = activation_type
         # network learning rate
         self.alpha = alpha
         # calling our build method
@@ -110,7 +108,7 @@ class NeuralNetwork:
 			net = A[layer].dot(self.W[layer])
 			# computing the "net output" is simply applying our
 			# nonlinear activation function to the net input
-			out = self.__activation_function__(net)
+			out = self.sigmoid(net)
 			# once we have the net output, add it to our list of
 			# activations
 			A.append(out)
