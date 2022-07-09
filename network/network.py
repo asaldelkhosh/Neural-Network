@@ -187,8 +187,33 @@ class NeuralNetwork:
         
         return feed_forward_results
 
-    def back_propagetion(self, ff_results, y_train):
-         pass
+    """
+    predict
+        making prediction on testing dataset
+        @param X input dataset
+        @param add bias bool
+        @returns predicted value
+    """
+    def predict(self, X, addBias=True):
+		# initialize the output prediction as the input features -- this
+		# value will be (forward) propagated through the network to
+		# obtain the final prediction
+		p = np.atleast_2d(X)
+		# check to see if the bias column should be added
+		if addBias:
+			# insert a column of 1's as the last entry in the feature
+			# matrix (bias)
+			p = np.c_[p, np.ones((p.shape[0]))]
+		# loop over our layers in the network
+		for layer in np.arange(0, len(self.W)):
+			# computing the output prediction is as simple as taking
+			# the dot product between the current activation value 'p'
+			# and the weight matrix associated with the current layer,
+			# then passing this value through a nonlinear activation
+			# function
+			p = self.sigmoid(np.dot(p, self.W[layer]))
+		# return the predicted value
+		return p
     
     """
     accuracy:
