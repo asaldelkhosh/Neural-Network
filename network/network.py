@@ -136,6 +136,33 @@ class NeuralNetwork:
 		# simply the error of the output layer times the derivative
 		# of our activation function for the output value
 		D = [error * self.sigmoid_deriv(A[-1])]
+
+        # once you understand the chain rule it becomes super easy
+		# to implement with a 'for' loop -- simply loop over the
+		# layers in reverse order (ignoring the last two since we
+		# already have taken them into account)
+		for layer in np.arange(len(A) - 2, 0, -1):
+			# the delta for the current layer is equal to the delta
+			# of the *previous layer* dotted with the weight matrix
+			# of the current layer, followed by multiplying the delta
+			# by the derivative of the nonlinear activation function
+			# for the activations of the current layer
+			delta = D[-1].dot(self.W[layer].T)
+			delta = delta * self.sigmoid_deriv(A[layer])
+			D.append(delta)
+        
+        # since we looped over our layers in reverse order we need to
+		# reverse the deltas
+		D = D[::-1]
+		# WEIGHT UPDATE PHASE
+		# loop over the layers
+		for layer in np.arange(0, len(self.W)):
+			# update our weights by taking the dot product of the layer
+			# activations with their respective deltas, then multiplying
+			# this value by some small learning rate and adding to our
+			# weight matrix -- this is where the actual "learning" takes
+			# place
+			self.W[layer] += -self.alpha * A[layer].T.dot(D[layer])
         
     """
     feed_forward:
