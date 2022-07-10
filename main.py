@@ -1,5 +1,5 @@
 # python imports
-
+import numpy as np
 # project imports
 from network.network import NeuralNetwork
 
