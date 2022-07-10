@@ -25,19 +25,19 @@ class NeuralNetwork:
     build
         initializing network weights with random numbers.
     """
-    def __build__(self):
+	def __build__(self):
         # start looping from the index of the first layer but
 		# stop before we reach the last two layers
-		for i in np.arange(0, len(layers) - 2):
+		for i in np.arange(0, len(self.layers) - 2):
 			# randomly initialize a weight matrix connecting the
 			# number of nodes in each respective layer together,
 			# adding an extra node for the bias
-			w = np.random.randn(layers[i] + 1, layers[i + 1] + 1)
-			self.W.append(w / np.sqrt(layers[i]))
+			w = np.random.randn(self.layers[i] + 1, self.layers[i + 1] + 1)
+			self.W.append(w / np.sqrt(self.layers[i]))
         # the last two layers are a special case where the input
 		# connections need a bias term but the output does not
-		w = np.random.randn(layers[-2] + 1, layers[-1])
-		self.W.append(w / np.sqrt(layers[-2]))
+		w = np.random.randn(self.layers[-2] + 1, self.layers[-1])
+		self.W.append(w / np.sqrt(self.layers[-2]))
 
     """
     repr
