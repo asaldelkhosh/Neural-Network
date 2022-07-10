@@ -10,7 +10,7 @@ if __name__ == "__main__":
         temp.append(random.randint(0, 1))
         temp.append(random.randint(0, 1))
         pairs.append(temp)
-        result.append(temp[0] * temp[1])
+        result.append(min(temp[0] + temp[1], 1))
     
     with open('in.txt', 'w') as file:
         for i in pairs:
