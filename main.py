@@ -10,7 +10,7 @@ MAIN_DIR = 'examples'
 IN_FILES = 'in.txt'
 OT_FILES = 'out.txt'
 # dataset (and, or, xor)
-DATA_SET = 'xor'
+DATA_SET = 'and'
 
 
 if __name__ == "__main__":
@@ -51,10 +51,18 @@ if __name__ == "__main__":
     nn = NeuralNetwork([2, 2, 1], alpha=0.5)
     nn.fit(x_train, y_train)
 
+    correct = 0
+
     # now that our network is trained, loop over the XOR data points
     for (x, target) in zip(x_test, y_test):
         # make a prediction on the data point and display the result
         # to our console
         pred = nn.predict(x)[0][0]
         step = 1 if pred > 0.5 else 0
+
+        if step == target:
+            correct = correct + 1
+
         print(f'[INFO] data={x}, ground-truth={target}, pred={pred}, step={step}')
+    
+    print(f'[INFO] result={correct}/{len(y_test)} accuracy={100*correct/len(y_test)}%')
