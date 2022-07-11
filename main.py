@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     correct = 0
 
-    # now that our network is trained, loop over the XOR data points
+    # now that our network is trained, loop over the output data points
     for (x, target) in zip(x_test, y_test):
         # make a prediction on the data point and display the result
         # to our console
