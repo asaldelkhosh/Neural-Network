@@ -1,8 +1,8 @@
-# Neural Network
-
 <p align="center">
     <img src=".github/readme/logo.jpg" width="300" alt="logo" />
 </p>
+
+<br />
 
 Implementing a basic **Backpropagition Neural Network** with the ability of customizing hidden layers and hidden nodes.
 
